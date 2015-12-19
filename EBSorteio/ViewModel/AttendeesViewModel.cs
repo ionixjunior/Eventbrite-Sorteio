@@ -62,6 +62,8 @@ namespace EBSorteio.ViewModel
 				resultItems.Attendees = resultItems.Attendees.GroupBy(x => x.Profile.Email).Select(y => y.FirstOrDefault()).ToList();
 
 				Data = resultItems;
+
+				view.ShowData();
 			}
 			catch(Exception e)
 			{
