@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+			 xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+			 x:Class="EBSorteio.View.EventsView"
+			 Title="Eventos">
+	<StackLayout>
+		<ListView ItemsSource="{Binding Data.UserEvents}" HasUnevenRows="true">
+			<ListView.ItemTemplate>
+				<DataTemplate>
+					<TextCell Text="{Binding Events.Name.Text}" Detail="{Binding Events.id}" />
+				</DataTemplate>
+			</ListView.ItemTemplate>
+		</ListView>
+	</StackLayout>
+</ContentPage>
