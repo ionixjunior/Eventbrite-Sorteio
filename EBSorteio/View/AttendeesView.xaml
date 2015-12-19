@@ -3,6 +3,10 @@
 		     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
 		     x:Class="EBSorteio.View.AttendeesView"
 		     Title="Participantes">
+	<ContentPage.ToolbarItems>
+		<ToolbarItem Text="Sortear" Icon="app_16x16_random.png" />
+	</ContentPage.ToolbarItems>
+
 	<StackLayout>
 		<ListView ItemsSource="{Binding Data.Attendees}" HasUnevenRows="true">
 			<ListView.ItemTemplate>
