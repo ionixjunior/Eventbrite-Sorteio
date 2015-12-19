@@ -19,7 +19,7 @@ namespace EBSorteio.View
 		{
 			base.OnAppearing ();
 
-			if(ViewModel == null)
+			if( ViewModel == null)
 			{
 					ViewModel = new UserEventViewModel();
 					BindingContext = ViewModel;
