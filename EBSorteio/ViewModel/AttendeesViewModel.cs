@@ -9,7 +9,22 @@ namespace EBSorteio.ViewModel
 {
 	public class AttendeesViewModel : BaseViewModel
 	{
-		public static async Task<AttendeesResponse> Load()
+		private AttendeesResponse _attendees;
+
+		public AttendeesResponse Attendees
+		{
+			get { return _attendees; }
+			set 
+			{
+				if (value != _attendees) 
+				{
+					_attendees = value;
+					base.INotifyPropertyChanged ();
+				}
+			}
+		}
+
+		public async Task<AttendeesResponse> Load()
 		{
 			var url = string.Concat (
 				"https://www.eventbriteapi.com/v3/events/20087371870/attendees/?token=", 
@@ -23,7 +38,7 @@ namespace EBSorteio.ViewModel
 			HttpResponseMessage response = await httpClient.SendAsync(request);
 			string result = await response.Content.ReadAsStringAsync();
 
-			return JsonConvert.DeserializeObject<AttendeesResponse>(result);
+			Attendees = JsonConvert.DeserializeObject<AttendeesResponse>(result);
 		}
 	}
 }
