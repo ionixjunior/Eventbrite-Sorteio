@@ -35,7 +35,7 @@ namespace EBSorteio.ViewModel
 			request.Headers.Accept.Add (new MediaTypeWithQualityHeaderValue ("application/json"));
 
 			HttpResponseMessage response = await httpClient.SendAsync (request);
-			string result = await response.Content.ReadAsStreamAsync ();
+            string result = await response.Content.ReadAsStringAsync();
 
 			Data = JsonConvert.DeserializeObject<UserEventsResponse> (result);
 		}
