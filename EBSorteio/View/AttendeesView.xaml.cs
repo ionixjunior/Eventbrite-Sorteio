@@ -30,6 +30,15 @@ namespace EBSorteio.View
 				ViewModel.Load ();
 			}
 		}
+
+		public void OpenAward(object sender, EventArgs args)
+		{
+			Navigation.PushModalAsync (
+				new NavigationPage(
+					new AwardView()
+				)
+			);
+		}
 	}
 }
 

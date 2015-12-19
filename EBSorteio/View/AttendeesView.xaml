@@ -4,7 +4,7 @@
 		     x:Class="EBSorteio.View.AttendeesView"
 		     Title="Participantes">
 	<ContentPage.ToolbarItems>
-		<ToolbarItem Text="Sortear" Icon="app_16x16_random.png" />
+		<ToolbarItem Text="Sortear" Icon="app_16x16_random.png" Clicked="OpenAward" />
 	</ContentPage.ToolbarItems>
 
 	<StackLayout>
