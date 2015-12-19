@@ -4,6 +4,7 @@ using EBSorteio.Rest;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using Newtonsoft.Json;
+using System.Collections.Generic;
 
 namespace EBSorteio.ViewModel
 {
@@ -30,15 +31,43 @@ namespace EBSorteio.ViewModel
 				"https://www.eventbriteapi.com/v3/events/20087371870/attendees/?token=", 
 				AuthInfo.Token
 			);
+			try
+			{				
+				HttpClient httpClient = new HttpClient();
+				HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Get, url);
+				request.Headers.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
-			HttpClient httpClient = new HttpClient();
-			HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Get, url);
-			request.Headers.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+				HttpResponseMessage response = await httpClient.SendAsync(request);
+				string result = await response.Content.ReadAsStringAsync();
 
-			HttpResponseMessage response = await httpClient.SendAsync(request);
-			string result = await response.Content.ReadAsStringAsync();
+				AttendeesResponse resultItems = JsonConvert.DeserializeObject<AttendeesResponse>(result);
 
-			Data = JsonConvert.DeserializeObject<AttendeesResponse>(result);
+				resetData();
+				if(resultItems == null)
+				{					
+					return;
+				}
+
+				foreach(var item in resultItems.Attendees)
+				{
+					if(item.Checked_in)
+					{
+						Data.Attendees.Add(item);		
+					}
+				}
+			}
+			catch(Exception e)
+			{
+				var err = e.ToString ();
+			}
+		}
+		public void resetData()
+		{
+			Data = new AttendeesResponse()
+			{
+				Attendees = new List<Attendee>()
+			};
+
 		}
 	}
 }
