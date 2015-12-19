@@ -9,16 +9,16 @@ namespace EBSorteio.ViewModel
 {
 	public class AttendeesViewModel : BaseViewModel
 	{
-		private AttendeesResponse _attendees;
+		private AttendeesResponse _data;
 
-		public AttendeesResponse Attendees
+		public AttendeesResponse Data
 		{
-			get { return _attendees; }
+			get { return _data; }
 			set 
 			{
-				if (value != _attendees) 
+				if (value != _data) 
 				{
-					_attendees = value;
+					_data = value;
 					base.INotifyPropertyChanged ();
 				}
 			}
@@ -38,7 +38,7 @@ namespace EBSorteio.ViewModel
 			HttpResponseMessage response = await httpClient.SendAsync(request);
 			string result = await response.Content.ReadAsStringAsync();
 
-			Attendees = JsonConvert.DeserializeObject<AttendeesResponse>(result);
+			Data = JsonConvert.DeserializeObject<AttendeesResponse>(result);
 		}
 	}
 }

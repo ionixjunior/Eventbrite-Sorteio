@@ -25,7 +25,7 @@ namespace EBSorteio.View
 				BindingContext = ViewModel;
 			}
 
-			if (ViewModel.Attendees == null) 
+			if (ViewModel.Data == null) 
 			{
 				ViewModel.Load ();
 			}

@@ -4,10 +4,10 @@
 		     x:Class="EBSorteio.View.AttendeesView"
 		     Title="Participantes">
 	<StackLayout>
-		<ListView ItemsSource="">
+		<ListView ItemsSource="{Binding Data.Attendees}" HasUnevenRows="true">
 			<ListView.ItemTemplate>
 				<DataTemplate>
-					<EntryCell Text=""  />
+					<TextCell Text="{Binding Profile.FirstName}" Detail="{Binding Profile.Email}" />
 				</DataTemplate>
 			</ListView.ItemTemplate>
 		</ListView>
