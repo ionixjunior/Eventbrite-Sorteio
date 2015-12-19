@@ -24,7 +24,7 @@ namespace EBSorteio.ViewModel
 			}
 		}
 
-		public async Task<AttendeesResponse> Load()
+		public async Task Load()
 		{
 			var url = string.Concat (
 				"https://www.eventbriteapi.com/v3/events/20087371870/attendees/?token=", 
