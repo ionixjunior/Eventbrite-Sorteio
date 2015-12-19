@@ -42,12 +42,21 @@
     <Compile Include="Rest\Attendee.cs" />
     <Compile Include="Rest\Profile.cs" />
     <Compile Include="AuthInfo.cs" />
+    <Compile Include="Rest\UserEventsResponse.cs" />
+    <Compile Include="Rest\Events.cs" />
+    <Compile Include="Rest\UserEvent.cs" />
     <Compile Include="ViewModel\AttendeesViewModel.cs" />
     <Compile Include="ViewModel\BaseViewModel.cs" />
     <Compile Include="View\AwardView.xaml.cs">
       <DependentUpon>AwardView.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewModel\AwardViewModel.cs" />
+    <Compile Include="ViewModel\UserEventViewModel.cs" />
+    <Compile Include="View\EventsView.xaml.cs">
+      <DependentUpon>EventsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Rest\Name.cs" />
+
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <Import Project="..\packages\Xamarin.Forms.1.3.5.6335\build\portable-win+net45+wp80+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.targets" Condition="Exists('..\packages\Xamarin.Forms.1.3.5.6335\build\portable-win+net45+wp80+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.targets')" />
@@ -87,6 +96,9 @@
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Include="View\AwardView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\EventsView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
   </ItemGroup>
