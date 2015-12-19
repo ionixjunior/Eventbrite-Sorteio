@@ -8,6 +8,9 @@
 	</ContentPage.ToolbarItems>
 
 	<StackLayout>
-		<Label Text="Premio" />
+		<Label Text="E o ganhador é..." HorizontalOptions="CenterAndExpand" />
+		<Label Text="{Binding Data.Profile.FirstName}" HorizontalOptions="CenterAndExpand" />
+		<Label Text="{Binding Data.Profile.Email}" HorizontalOptions="CenterAndExpand" />
+		<Label Text="Parabéns!" HorizontalOptions="CenterAndExpand" />
 	</StackLayout>
 </ContentPage>

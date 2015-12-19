@@ -33,7 +33,7 @@ namespace EBSorteio.ViewModel
 			var index = random.Next (0, (AttendeesResponse.Attendees.Count - 1));
 			Attendee attendee = AttendeesResponse.Attendees[index];
 
-			System.Diagnostics.Debug.WriteLine (attendee.Profile.FirstName);
+			Data = attendee;
 		}
 	}
 }
