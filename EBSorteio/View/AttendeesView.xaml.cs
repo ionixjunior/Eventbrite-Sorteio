@@ -35,7 +35,7 @@ namespace EBSorteio.View
 		{
 			Navigation.PushModalAsync (
 				new NavigationPage(
-					new AwardView()
+					new AwardView(ViewModel.Data)
 				)
 			);
 		}

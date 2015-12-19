@@ -3,6 +3,7 @@ using System.Collections.Generic;
 
 using Xamarin.Forms;
 using EBSorteio.ViewModel;
+using EBSorteio.Rest;
 
 namespace EBSorteio.View
 {
@@ -10,9 +11,13 @@ namespace EBSorteio.View
 	{
 		private AwardViewModel ViewModel { get; set; }
 
-		public AwardView ()
+		private AttendeesResponse Attendees { get; set; }
+
+		public AwardView (AttendeesResponse Attendees)
 		{
 			InitializeComponent ();
+
+			this.Attendees = Attendees;
 		}
 
 		protected override void OnAppearing ()
@@ -21,8 +26,13 @@ namespace EBSorteio.View
 
 			if (ViewModel == null) 
 			{
-				ViewModel = new AwardViewModel ();
+				ViewModel = new AwardViewModel (Attendees);
 				BindingContext = ViewModel;
+			}
+
+			if (ViewModel.Data == null) 
+			{
+				ViewModel.Load ();
 			}
 		}
 
