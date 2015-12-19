@@ -12,7 +12,7 @@
 			<ActivityIndicator IsRunning="true" />
 		</StackLayout>
 
-		<StackLayout x:Name="stackLayoutData" IsVisible="false">
+		<StackLayout x:Name="stackLayoutData" IsVisible="false" VerticalOptions="FillAndExpand">
 			<ListView ItemsSource="{Binding Data.Attendees}" HasUnevenRows="true">
 				<ListView.ItemTemplate>
 					<DataTemplate>
