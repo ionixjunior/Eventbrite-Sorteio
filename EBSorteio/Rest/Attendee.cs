@@ -6,7 +6,7 @@ namespace EBSorteio.Rest
 	public class Attendee
 	{
 		[JsonProperty("id")]
-		public int ID { get; set; }
+		public string ID { get; set; }
 
 		[JsonProperty("profile")]
 		public Profile Profile { get; set; }
