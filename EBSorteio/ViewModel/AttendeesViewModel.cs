@@ -27,7 +27,7 @@ namespace EBSorteio.ViewModel
 		public async Task Load()
 		{
 			var url = string.Concat (
-				"https://www.eventbriteapi.com/v3/events/20087371870/attendees/?token=", 
+				"https://www.eventbriteapi.com/v3/events/19841692035/attendees/?token=", 
 				AuthInfo.Token
 			);
 

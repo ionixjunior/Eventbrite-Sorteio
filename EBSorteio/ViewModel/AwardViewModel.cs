@@ -5,7 +5,7 @@ namespace EBSorteio.ViewModel
 {
 	public class AwardViewModel : BaseViewModel
 	{
-		private AttendeesResponse Attendees { get; set; }
+		private AttendeesResponse AttendeesResponse { get; set; }
 
 		private Attendee _data;
 
@@ -22,14 +22,18 @@ namespace EBSorteio.ViewModel
 			}
 		}
 
-		public AwardViewModel(AttendeesResponse Attendees)
+		public AwardViewModel(AttendeesResponse AttendeesResponse)
 		{
-			this.Attendees = Attendees;
+			this.AttendeesResponse = AttendeesResponse;
 		}
 
 		public void Load()
 		{
-			//implementar sorteio aqui
+			var random = new Random();
+			var index = random.Next (0, (AttendeesResponse.Attendees.Count - 1));
+			Attendee attendee = AttendeesResponse.Attendees[index];
+
+			System.Diagnostics.Debug.WriteLine (attendee.Profile.FirstName);
 		}
 	}
 }

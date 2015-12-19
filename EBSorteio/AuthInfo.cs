@@ -6,7 +6,7 @@ namespace EBSorteio
 	{
 		public static string Token
 		{
-			get { return "5O6RW6DGUJLFOQCBN4AB"; }
+			get { return "XJ6GQ3FLUUS3MXHGO6NE"; }
 		}
 	}
 }
