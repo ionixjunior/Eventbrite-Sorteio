@@ -5,11 +5,8 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using Newtonsoft.Json;
 using System.Collections.Generic;
-<<<<<<< HEAD
 using EBSorteio.View;
-=======
 using System.Linq;
->>>>>>> ea1330aeeb2ff502b4b5074b301b4161c4472833
 
 namespace EBSorteio.ViewModel
 {
