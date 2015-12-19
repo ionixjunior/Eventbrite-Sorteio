@@ -10,7 +10,7 @@
 	<StackLayout>
 		<StackLayout VerticalOptions="CenterAndExpand">
 			<Label Text="E o ganhador é..." HorizontalOptions="CenterAndExpand" />
-			<Label Text="{Binding Data.Profile.FirstName}" HorizontalOptions="CenterAndExpand" />
+			<Label Text="{Binding Data.Profile.FirstName}" HorizontalOptions="CenterAndExpand" FontSize="19"  />
 			<Label Text="{Binding Data.Profile.Email}" HorizontalOptions="CenterAndExpand" />
 			<Image Source="Award.png" HeightRequest="150" WidthRequest="150" HorizontalOptions="CenterAndExpand" />
 			<Label Text="Parabéns!" HorizontalOptions="CenterAndExpand" />
