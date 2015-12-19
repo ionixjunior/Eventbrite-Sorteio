@@ -5,11 +5,14 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using Newtonsoft.Json;
 using System.Collections.Generic;
+using EBSorteio.View;
 
 namespace EBSorteio.ViewModel
 {
 	public class AttendeesViewModel : BaseViewModel
 	{
+		private AttendeesView view { get; set; }
+
 		private AttendeesResponse _data;
 
 		public AttendeesResponse Data
@@ -25,8 +28,15 @@ namespace EBSorteio.ViewModel
 			}
 		}
 
+		public AttendeesViewModel(AttendeesView view)
+		{
+			this.view = view;
+		}
+
 		public async Task Load()
 		{
+			view.ShowActivityIndicator ();
+
 			var url = string.Concat (
 				"https://www.eventbriteapi.com/v3/events/19841692035/attendees/?token=", 
 				AuthInfo.Token
@@ -55,6 +65,8 @@ namespace EBSorteio.ViewModel
 						Data.Attendees.Add(item);		
 					}
 				}
+
+				view.ShowData();
 			}
 			catch(Exception e)
 			{

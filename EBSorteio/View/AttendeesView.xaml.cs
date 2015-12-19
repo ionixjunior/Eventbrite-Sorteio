@@ -21,7 +21,7 @@ namespace EBSorteio.View
 
 			if (ViewModel == null) 
 			{
-				ViewModel = new AttendeesViewModel ();
+				ViewModel = new AttendeesViewModel (this);
 				BindingContext = ViewModel;
 			}
 
@@ -38,6 +38,24 @@ namespace EBSorteio.View
 					new AwardView(ViewModel.Data)
 				)
 			);
+		}
+
+		public void ShowData()
+		{
+			StackLayout stackLayoutActivityIndicator = this.FindByName<StackLayout> ("stackLayoutActivityIndicator");
+			StackLayout stackLayoutData = this.FindByName<StackLayout> ("stackLayoutData");
+
+			stackLayoutActivityIndicator.IsVisible = false;
+			stackLayoutData.IsVisible = true;
+		}
+
+		public void ShowActivityIndicator()
+		{
+			StackLayout stackLayoutActivityIndicator = this.FindByName<StackLayout> ("stackLayoutActivityIndicator");
+			StackLayout stackLayoutData = this.FindByName<StackLayout> ("stackLayoutData");
+
+			stackLayoutActivityIndicator.IsVisible = true;
+			stackLayoutData.IsVisible = false;
 		}
 	}
 }
