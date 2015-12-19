@@ -5,7 +5,11 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using Newtonsoft.Json;
 using System.Collections.Generic;
+<<<<<<< HEAD
 using EBSorteio.View;
+=======
+using System.Linq;
+>>>>>>> ea1330aeeb2ff502b4b5074b301b4161c4472833
 
 namespace EBSorteio.ViewModel
 {
@@ -57,16 +61,10 @@ namespace EBSorteio.ViewModel
 				{					
 					return;
 				}
+				resultItems.Attendees = resultItems.Attendees.Where(x => x.Checked_in == true).ToList();
+				resultItems.Attendees = resultItems.Attendees.GroupBy(x => x.Profile.Email).Select(y => y.FirstOrDefault()).ToList();
 
-				foreach(var item in resultItems.Attendees)
-				{
-					if(item.Checked_in)
-					{
-						Data.Attendees.Add(item);		
-					}
-				}
-
-				view.ShowData();
+				Data = resultItems;
 			}
 			catch(Exception e)
 			{
