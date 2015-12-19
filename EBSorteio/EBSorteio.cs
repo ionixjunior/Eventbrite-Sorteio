@@ -1,6 +1,7 @@
 ﻿using System;
 
 using Xamarin.Forms;
+using EBSorteio.View;
 
 namespace EBSorteio
 {
@@ -9,17 +10,9 @@ namespace EBSorteio
 		public App ()
 		{
 			// The root page of your application
-			MainPage = new ContentPage {
-				Content = new StackLayout {
-					VerticalOptions = LayoutOptions.Center,
-					Children = {
-						new Label {
-							XAlign = TextAlignment.Center,
-							Text = "Welcome to Xamarin Forms!"
-						}
-					}
-				}
-			};
+			MainPage = new NavigationPage(
+				new HomeView()
+			);
 		}
 
 		protected override void OnStart ()
