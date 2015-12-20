@@ -13,7 +13,7 @@
 			<ListView ItemsSource="{Binding Data.Events}" HasUnevenRows="true">
 			<ListView.ItemTemplate>
 				<DataTemplate>
-					<TextCell Text="{Binding Name.EventName}" Detail="{Binding id}" />
+					<TextCell Text="{Binding Name.Event}" Detail="{Binding id}" />
 				</DataTemplate>
 			</ListView.ItemTemplate>
 		</ListView>
