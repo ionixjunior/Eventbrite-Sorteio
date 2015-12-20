@@ -6,10 +6,11 @@ namespace EBSorteio.Rest
     public class Name
     {
         [JsonProperty("text")]
-        public String Text;
+        public String Event;
 
         [JsonProperty("html")]
         public String Html;
+
     }
 }
 
