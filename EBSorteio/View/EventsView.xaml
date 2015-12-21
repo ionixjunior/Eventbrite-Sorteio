@@ -10,7 +10,7 @@
 		</StackLayout>
 
 		<StackLayout x:Name="stackLayoutData" IsVisible="false" VerticalOptions="FillAndExpand">
-			<ListView ItemsSource="{Binding Data.Events}" HasUnevenRows="true">
+			<ListView x:Name="listDataEvents" ItemsSource="{Binding Data.Events}" HasUnevenRows="true">
 			<ListView.ItemTemplate>
 				<DataTemplate>
 					<TextCell Text="{Binding Name.Event}" Detail="{Binding id}" />

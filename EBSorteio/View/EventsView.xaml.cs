@@ -21,7 +21,7 @@ namespace EBSorteio.View
 
 			if( ViewModel == null)
 			{
-                ViewModel = new UserEventViewModel(this);
+				ViewModel = new UserEventViewModel(this);
 				BindingContext = ViewModel;
 			}
 
