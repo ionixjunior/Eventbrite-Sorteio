@@ -7,6 +7,7 @@ using Newtonsoft.Json;
 using System.Collections.Generic;
 using EBSorteio.View;
 using System.Linq;
+using Xamarin.Forms;
 
 namespace EBSorteio.ViewModel
 {
@@ -32,14 +33,19 @@ namespace EBSorteio.ViewModel
 		public AttendeesViewModel(AttendeesView view)
 		{
 			this.view = view;
+			MessagingCenter.Subscribe<Events>(this, "EventItem", async (sender) => await Load(sender));
+
 		}
 
-		public async Task Load()
+		public async Task Load(Events eventItem)
 		{
+			if (eventItem == null)
+				view.SendBackButtonPressed ();
+			
 			view.ShowActivityIndicator ();
 
 			var url = string.Concat (
-				"https://www.eventbriteapi.com/v3/events/19841692035/attendees/?token=", 
+				"https://www.eventbriteapi.com/v3/events/",eventItem.id,"/attendees/?token=", 
 				AuthInfo.Token
 			);
 			try

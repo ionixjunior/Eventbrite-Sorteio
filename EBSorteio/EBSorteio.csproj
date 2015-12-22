@@ -86,6 +86,8 @@
     <Folder Include="View\" />
     <Folder Include="Rest\" />
     <Folder Include="ViewModel\" />
+    <Folder Include="Repositories\" />
+    <Folder Include="Services\" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="View\HomeView.xaml">

@@ -9,10 +9,12 @@ namespace EBSorteio.View
 	public partial class AttendeesView : ContentPage
 	{
 		private AttendeesViewModel ViewModel { get; set; }
+		private string _eventId { get; set; } 
 
 		public AttendeesView ()
 		{
 			InitializeComponent ();
+			//this._eventId = eventId;
 		}
 
 		protected override void OnAppearing ()
@@ -27,7 +29,7 @@ namespace EBSorteio.View
 
 			if (ViewModel.Data == null) 
 			{
-				ViewModel.Load ();
+				//ViewModel.Load ();
 			}
 		}
 

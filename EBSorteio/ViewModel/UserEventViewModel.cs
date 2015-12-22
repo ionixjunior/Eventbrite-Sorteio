@@ -43,8 +43,9 @@ namespace EBSorteio.ViewModel
 
 		protected async Task ExecuteItemTapped(ItemTappedEventArgs evento)
 		{
-			var attendeesPage = new AttendeesView();
-			await navigation.PushAsync(attendeesPage);
+			
+			//var attendeesPage = new AttendeesView(eventoItem.id);
+			//await navigation.PushAsync(attendeesPage);
 		}
 
 
@@ -52,13 +53,18 @@ namespace EBSorteio.ViewModel
         {
             this.view = view;
 			this.navigation = view.Navigation;
+
 			var listDataEvents = view.FindByName<ListView> ("listDataEvents");
 
 			listDataEvents.ItemTapped += (object sender, ItemTappedEventArgs args) =>
 			{
+				var eventoItem = args.Item as Events;
+
 				Device.BeginInvokeOnMainThread(async () =>  {
 					
-					await navigation.PushAsync ( new AttendeesView());
+					await navigation.PushAsync ( new AttendeesView(), true);
+					//await navigation();
+					MessagingCenter.Send<Events>(eventoItem, "EventItem");
 				});
 
 			};
