@@ -15,7 +15,7 @@ namespace EBSorteio.View
 			InitializeComponent ();
 		}
 
-		protected override void OnAppearing ()
+		protected override async void OnAppearing ()
 		{
 			base.OnAppearing ();
 
@@ -27,7 +27,7 @@ namespace EBSorteio.View
 
 			if (ViewModel.Data == null) 
 			{
-				ViewModel.Load();
+				await ViewModel.Load();
 			}
 		}
 

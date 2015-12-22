@@ -16,9 +16,11 @@ namespace EBSorteio.ViewModel
 		private INavigation navigation;
         private EventsView view { get; set; }
 		private Command<ItemTappedEventArgs> _itemTappedCommand;
-		private UserEventsResponse _data;
+		private EventRepository _eventRepository;
 
-		public UserEventsResponse Data
+		private List<EventViewModel> _data;
+
+		public List<EventViewModel> Data
 		{
 			get { return _data; }
 			set 
@@ -53,18 +55,19 @@ namespace EBSorteio.ViewModel
         {
             this.view = view;
 			this.navigation = view.Navigation;
+			this._eventRepository = new EventRepository (new EventBriteService());
 
 			var listDataEvents = view.FindByName<ListView> ("listDataEvents");
 
 			listDataEvents.ItemTapped += (object sender, ItemTappedEventArgs args) =>
 			{
-				var eventoItem = args.Item as Events;
+				var eventoItem = args.Item as EventViewModel;
 
 				Device.BeginInvokeOnMainThread(async () =>  {
 					
 					await navigation.PushAsync ( new AttendeesView(), true);
 					//await navigation();
-					MessagingCenter.Send<Events>(eventoItem, "EventItem");
+					MessagingCenter.Send<string>(eventoItem.id, "EventItem");
 				});
 
 			};
@@ -75,28 +78,17 @@ namespace EBSorteio.ViewModel
 
             view.ShowActivityIndicator ();
 
-			var url = string.Concat (
-				          "https://www.eventbriteapi.com/v3/users/me/events/?token=",
-				          AuthInfo.Token
-			          );
             try
             {
-                HttpClient httpClient = new HttpClient ();
-                HttpRequestMessage request = new HttpRequestMessage (HttpMethod.Get, url);
-                request.Headers.Accept.Add (new MediaTypeWithQualityHeaderValue ("application/json"));
-
-                HttpResponseMessage response = await httpClient.SendAsync (request);
-                string result = await response.Content.ReadAsStringAsync ();
-
-                UserEventsResponse resultItems = JsonConvert.DeserializeObject<UserEventsResponse>(result);
+				var result = await _eventRepository.getAllEventsByServiceId("eventBrite");
 
                 resetData();
-                if (resultItems == null)
+				if (result == null)
                 {
                     return;
                 }
 
-                Data = resultItems;
+				Data = result;
 
                 view.ShowData();
             }
@@ -108,11 +100,7 @@ namespace EBSorteio.ViewModel
 
         public void resetData()
         {
-            Data = new UserEventsResponse()
-                {
-                    Events = new List<Events>()
-                };
-
+			Data = new List<EventViewModel> ();
         }
 	}
 }

@@ -33,19 +33,19 @@ namespace EBSorteio.ViewModel
 		public AttendeesViewModel(AttendeesView view)
 		{
 			this.view = view;
-			MessagingCenter.Subscribe<Events>(this, "EventItem", async (sender) => await Load(sender));
+			MessagingCenter.Subscribe<string>(this, "EventItem", async (sender) => await Load(sender));
 
 		}
 
-		public async Task Load(Events eventItem)
+		public async Task Load(string eventId)
 		{
-			if (eventItem == null)
+			if (eventId == null)
 				view.SendBackButtonPressed ();
 			
 			view.ShowActivityIndicator ();
 
 			var url = string.Concat (
-				"https://www.eventbriteapi.com/v3/events/",eventItem.id,"/attendees/?token=", 
+				"https://www.eventbriteapi.com/v3/events/",eventId,"/attendees/?token=", 
 				AuthInfo.Token
 			);
 			try
