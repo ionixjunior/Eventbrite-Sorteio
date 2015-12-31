@@ -1,4 +1,5 @@
 ﻿using System;
+using EBSorteio.Common;
 
 namespace EBSorteio
 {
@@ -6,7 +7,7 @@ namespace EBSorteio
 	{
 		public static string Token
 		{
-			get { return "XJ6GQ3FLUUS3MXHGO6NE"; }
+			get { return (string) SessionManager.Get(SessionName.OAuthToken); }
 		}
 	}
 }
