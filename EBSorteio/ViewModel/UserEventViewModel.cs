@@ -7,6 +7,7 @@ using Newtonsoft.Json;
 using EBSorteio.View;
 using System.Collections.Generic;
 using Xamarin.Forms;
+using EBSorteio.Exceptions;
 
 
 namespace EBSorteio.ViewModel
@@ -92,9 +93,14 @@ namespace EBSorteio.ViewModel
 
                 view.ShowData();
             }
+			catch (OAuthException e) 
+			{
+				await view.DisplayAlert ("Atenção", e.Message, "Ok");
+				await view.Navigation.PushModalAsync (new NavigationPage(new OAuthView()));
+			}
             catch(Exception e)
             {
-                var err = e.ToString();
+				await view.DisplayAlert ("Erro", e.Message, "Ok");
             }
 		}
 

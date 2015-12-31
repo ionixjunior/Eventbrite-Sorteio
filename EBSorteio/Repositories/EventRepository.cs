@@ -19,20 +19,12 @@ namespace EBSorteio
 		{
 			if (serviceId == "eventBrite") 
 			{
-				try
-				{				
-					var resultItems = await _eventBriteService.getAllEvents();	
+				var resultItems = await _eventBriteService.getAllEvents();	
 
-					if (resultItems != null) {
-						var resultItemsVM = resultItems.ToList ().Select (x => newEventViewModel (x)).ToList();
-						return (resultItemsVM != null ? resultItemsVM : null);
-					}
-				} 
-				catch(Exception e) 
-				{
-				
+				if (resultItems != null) {
+					var resultItemsVM = resultItems.ToList ().Select (x => newEventViewModel (x)).ToList();
+					return (resultItemsVM != null ? resultItemsVM : null);
 				}
-
 			}
 			return null;				
 		}

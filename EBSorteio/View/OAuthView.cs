@@ -76,6 +76,7 @@ namespace EBSorteio.View
 					if (name.Equals ("code")) {
 						await SessionManager.SetAsync (SessionName.OAuthCode, value);
 						await viewModel.LoadToken ();
+						await Navigation.PopModalAsync ();
 					}
 				}
 			}

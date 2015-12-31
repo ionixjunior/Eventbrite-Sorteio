@@ -6,6 +6,8 @@ using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using System.Linq;
 using System.Collections.Generic;
+using System.Net;
+using EBSorteio.Exceptions;
 
 namespace EBSorteio
 {
@@ -17,25 +19,30 @@ namespace EBSorteio
 		public async Task<List<Events>> getAllEvents()
 		{
 			var url = string.Concat ("https://www.eventbriteapi.com/v3/users/me/events/?token=", AuthInfo.Token);
-			try
-			{
-				HttpClient httpClient = new HttpClient ();
-				HttpRequestMessage request = new HttpRequestMessage (HttpMethod.Get, url);
-				request.Headers.Accept.Add (new MediaTypeWithQualityHeaderValue ("application/json"));
 
-				HttpResponseMessage response = await httpClient.SendAsync (request);
-				string result = await response.Content.ReadAsStringAsync ();
+			HttpClient httpClient = new HttpClient ();
+			HttpRequestMessage request = new HttpRequestMessage (HttpMethod.Get, url);
+			request.Headers.Accept.Add (new MediaTypeWithQualityHeaderValue ("application/json"));
 
-				UserEventsResponse resultItems = JsonConvert.DeserializeObject<UserEventsResponse>(result);
+			HttpResponseMessage response = await httpClient.SendAsync (request);
 
-				return resultItems.Events;
+			if (response.StatusCode.Equals (HttpStatusCode.Unauthorized)) {
+				throw new OAuthException ();
 			}
-			catch(Exception e)
+
+			// STATUS CODE 429 - TOO MANY REQUESTS
+			if (response.StatusCode.Equals((HttpStatusCode)429))
 			{
-				var err = e.ToString();
-				return null;
+				throw new OAuthException();
 			}
+
+			string result = await response.Content.ReadAsStringAsync ();
+
+			UserEventsResponse resultItems = JsonConvert.DeserializeObject<UserEventsResponse>(result);
+
+			return resultItems.Events;
 		}
+
 		public async Task<AttendeesResponse> getAllCheckedAttendeesByEventId(string eventId)
 		{
 			var url = string.Concat (
