@@ -5,7 +5,7 @@ namespace EBSorteio.Rest
 {
 	public class Events
 	{
-		[JsonProperty("Name")]
+		[JsonProperty("name")]
         public Name Name { get; set; }
 
         [JsonProperty("id")]

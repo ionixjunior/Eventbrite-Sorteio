@@ -3,13 +3,20 @@
 			 xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
 			 x:Class="EBSorteio.View.EventsView"
 			 Title="Eventos">
+
 	<StackLayout>
-		<ListView ItemsSource="{Binding Data.UserEvents}" HasUnevenRows="true">
+		<StackLayout x:Name="stackLayoutActivityIndicator" IsVisible="false" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+			<ActivityIndicator IsRunning="true" />
+		</StackLayout>
+
+		<StackLayout x:Name="stackLayoutData" IsVisible="false" VerticalOptions="FillAndExpand">
+			<ListView x:Name="listDataEvents" ItemsSource="{Binding Data}" HasUnevenRows="true">
 			<ListView.ItemTemplate>
 				<DataTemplate>
-					<TextCell Text="{Binding Events.Name.Text}" Detail="{Binding Events.id}" />
+					<TextCell Text="{Binding Name}" Detail="{Binding id}" />
 				</DataTemplate>
 			</ListView.ItemTemplate>
 		</ListView>
+		</StackLayout>
 	</StackLayout>
 </ContentPage>

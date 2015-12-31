@@ -15,21 +15,39 @@ namespace EBSorteio.View
 			InitializeComponent ();
 		}
 
-		protected override void OnAppearing ()
+		protected override async void OnAppearing ()
 		{
 			base.OnAppearing ();
 
 			if( ViewModel == null)
 			{
-					ViewModel = new UserEventViewModel();
-					BindingContext = ViewModel;
+				ViewModel = new UserEventViewModel(this);
+				BindingContext = ViewModel;
 			}
 
 			if (ViewModel.Data == null) 
 			{
-				ViewModel.Load();
+				await ViewModel.Load();
 			}
 		}
+
+        public void ShowData()
+        {
+            StackLayout stackLayoutActivityIndicator = this.FindByName<StackLayout> ("stackLayoutActivityIndicator");
+            StackLayout stackLayoutData = this.FindByName<StackLayout> ("stackLayoutData");
+
+            stackLayoutActivityIndicator.IsVisible = false;
+            stackLayoutData.IsVisible = true;
+        }
+
+        public void ShowActivityIndicator()
+        {
+            StackLayout stackLayoutActivityIndicator = this.FindByName<StackLayout> ("stackLayoutActivityIndicator");
+            StackLayout stackLayoutData = this.FindByName<StackLayout> ("stackLayoutData");
+
+            stackLayoutActivityIndicator.IsVisible = true;
+            stackLayoutData.IsVisible = false;
+        }
 	}
 }
 

@@ -11,7 +11,7 @@ namespace EBSorteio
 		{
 			// The root page of your application
 			MainPage = new NavigationPage(
-				new OAuthView()
+                new EventsView()
 			);
 		}
 
