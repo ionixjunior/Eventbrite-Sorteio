@@ -78,9 +78,16 @@ namespace EBSorteio.View
 					var name = splitParameter [0];
 					var value = splitParameter [1];
 					 
-					if (name.Equals ("code")) {
+					if (name.Equals ("code")) 
+					{
 						await SessionManager.SetAsync (SessionName.OAuthCode, value);
 						await viewModel.LoadToken ();
+						await CloseOAuth ();
+					}
+
+					if (name.Equals ("error") && value.Equals("access_denied")) 
+					{
+						await DisplayAlert ("Acesso negado", "Você deve conceder acesso ao EBSorteio para acessar suas informações no Eventbrite.", "Ok");
 						await CloseOAuth ();
 					}
 				}
