@@ -25,11 +25,19 @@ namespace EBSorteio.View
 			}
 		}
 
+		/**
+		 * Workaround para bug https://bugzilla.xamarin.com/show_bug.cgi?id=33954
+		 */
+		public void CallOnAppearing()
+		{
+			this.OnAppearing ();
+		}
+
 		public async void LoginEventbrite(object sender, EventArgs args)
 		{
 			await Navigation.PushModalAsync (
 				new NavigationPage(
-					new OAuthView()
+					new OAuthView(this)
 				)
 			);
 		}

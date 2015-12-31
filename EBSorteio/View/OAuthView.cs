@@ -4,6 +4,7 @@ using Xamarin.Forms;
 using EBSorteio.Common;
 using System.Threading.Tasks;
 using EBSorteio.ViewModel;
+using System.Collections;
 
 namespace EBSorteio.View
 {
@@ -31,8 +32,12 @@ namespace EBSorteio.View
 			get { return "https://www.eventbrite.com/ngapi/oauth/authorizing?"; }
 		}
 
-		public OAuthView ()
+		private HomeView ParentPage { get; set; }
+
+		public OAuthView (HomeView ParentPage)
 		{
+			this.ParentPage = ParentPage;
+
 			Title = "Autenticar";
 			Content = new StackLayout {
 				Children = { this.LoadWebView() }
@@ -76,9 +81,19 @@ namespace EBSorteio.View
 					if (name.Equals ("code")) {
 						await SessionManager.SetAsync (SessionName.OAuthCode, value);
 						await viewModel.LoadToken ();
-						await Navigation.PopModalAsync ();
+						await CloseOAuth ();
 					}
 				}
+			}
+		}
+
+		private async Task CloseOAuth()
+		{
+			await Navigation.PopModalAsync ();
+
+			if (Device.OS == TargetPlatform.Android) 
+			{
+				ParentPage.CallOnAppearing ();
 			}
 		}
 	}

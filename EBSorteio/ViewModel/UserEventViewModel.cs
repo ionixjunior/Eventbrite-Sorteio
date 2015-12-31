@@ -96,7 +96,9 @@ namespace EBSorteio.ViewModel
 			catch (OAuthException e) 
 			{
 				await view.DisplayAlert ("Atenção", e.Message, "Ok");
-				await view.Navigation.PushModalAsync (new NavigationPage(new OAuthView()));
+				Xamarin.Forms.Application.Current.MainPage = new NavigationPage (
+					new HomeView()
+				);
 			}
             catch(Exception e)
             {
