@@ -1,6 +1,8 @@
 ﻿using System;
 
 using Xamarin.Forms;
+using EBSorteio.Common;
+using System.Threading.Tasks;
 
 namespace EBSorteio.View
 {
@@ -40,7 +42,7 @@ namespace EBSorteio.View
 			return webView;
 		}
 
-		private void Navigating(object sender, WebNavigatingEventArgs args)
+		private async void Navigating(object sender, WebNavigatingEventArgs args)
 		{
 			if (args.Url.StartsWith (CallbackUrl)) 
 			{
@@ -52,9 +54,9 @@ namespace EBSorteio.View
 					var splitParameter = parameter.Split (new char[] { '=' }, 2);
 					var name = splitParameter [0];
 					var value = splitParameter [1];
-
+					 
 					if (name.Equals ("code")) {
-						// solicitar token de acesso com o código
+						await SessionManager.SetAsync (SessionName.Token, value);
 					}
 				}
 			}
