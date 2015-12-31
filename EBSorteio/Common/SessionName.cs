@@ -4,7 +4,8 @@ namespace EBSorteio.Common
 {
 	public class SessionName
 	{
-		public const string Token = "Token";
+		public const string OAuthCode = "OAuthCode";
+		public const string OAuthToken = "OAuthToken";
 	}
 }
 

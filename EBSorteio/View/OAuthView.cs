@@ -3,11 +3,14 @@
 using Xamarin.Forms;
 using EBSorteio.Common;
 using System.Threading.Tasks;
+using EBSorteio.ViewModel;
 
 namespace EBSorteio.View
 {
 	public class OAuthView : ContentPage
 	{
+		private OAuthViewModel viewModel { get; set; }
+
 		private string ClientId
 		{
 			get { return "6BUXMMQE3KGIWAW3JW"; }
@@ -16,6 +19,11 @@ namespace EBSorteio.View
 		private string AuthorizeUrl
 		{
 			get { return "https://www.eventbrite.com/oauth/authorize"; }
+		}
+
+		private string TokenUrl
+		{
+			get { return "https://www.eventbrite.com/oauth/token"; }
 		}
 
 		private string CallbackUrl
@@ -29,6 +37,16 @@ namespace EBSorteio.View
 			Content = new StackLayout {
 				Children = { this.LoadWebView() }
 			};
+		}
+
+		protected override void OnAppearing ()
+		{
+			base.OnAppearing ();
+
+			if (viewModel == null) 
+			{
+				viewModel = new OAuthViewModel ();
+			}
 		}
 
 		public WebView LoadWebView()
@@ -56,7 +74,8 @@ namespace EBSorteio.View
 					var value = splitParameter [1];
 					 
 					if (name.Equals ("code")) {
-						await SessionManager.SetAsync (SessionName.Token, value);
+						await SessionManager.SetAsync (SessionName.OAuthCode, value);
+						await viewModel.LoadToken ();
 					}
 				}
 			}
