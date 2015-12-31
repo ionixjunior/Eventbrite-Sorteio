@@ -34,7 +34,7 @@ namespace EBSorteio.View
 
 		public async void Logout(object sender, EventArgs args)
 		{
-			await SessionManager.Clean ();
+			await SessionManager.CleanAsync ();
 			Xamarin.Forms.Application.Current.MainPage = new NavigationPage (
 				new HomeView()
 			);

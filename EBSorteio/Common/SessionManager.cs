@@ -22,7 +22,7 @@ namespace EBSorteio.Common
 			await Application.Current.SavePropertiesAsync ();
 		}
 
-		public static async Task Clean()
+		public static async Task CleanAsync()
 		{
 			Application.Current.Properties.Clear ();
 			await Application.Current.SavePropertiesAsync ();
