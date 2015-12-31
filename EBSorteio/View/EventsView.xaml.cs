@@ -3,6 +3,7 @@ using System.Collections.Generic;
 
 using Xamarin.Forms;
 using EBSorteio.ViewModel;
+using EBSorteio.Common;
 
 namespace EBSorteio.View
 {
@@ -29,6 +30,14 @@ namespace EBSorteio.View
 			{
 				await ViewModel.Load();
 			}
+		}
+
+		public async void Logout(object sender, EventArgs args)
+		{
+			await SessionManager.Clean ();
+			Xamarin.Forms.Application.Current.MainPage = new NavigationPage (
+				new HomeView()
+			);
 		}
 
         public void ShowData()

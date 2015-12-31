@@ -3,6 +3,9 @@
 			 xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
 			 x:Class="EBSorteio.View.EventsView"
 			 Title="Eventos">
+	<ContentPage.ToolbarItems>
+		<ToolbarItem Text="Sair" Clicked="Logout" />
+	</ContentPage.ToolbarItems>
 
 	<StackLayout>
 		<StackLayout x:Name="stackLayoutActivityIndicator" IsVisible="false" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
