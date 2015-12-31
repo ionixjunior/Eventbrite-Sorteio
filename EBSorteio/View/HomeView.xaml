@@ -3,5 +3,5 @@
 			 xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
 			 x:Class="EBSorteio.View.HomeView"
 			 Title="Home">
-	<Label Text="Tela inicial" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" />
+	<Button Text="Entrar com Eventbrite" Clicked="LoginEventbrite" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" />
 </ContentPage>
