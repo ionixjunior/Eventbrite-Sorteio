@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<resources>
+  <style name="MyAppTheme"/>
+
+    <style name="MyAppTheme" parent="@android:style/Theme.Material.Light">
+
+      <item name="android:colorPrimary">@color/actionBarBackgroundColor</item>
+      <item name="android:colorAccent">@color/actionBarBackgroundColor</item>
+      <item name="android:textColorPrimary">@color/actionBarTextColor</item>
+      <item name="android:displayOptions">showHome|homeAsUp|showTitle</item>
+	  <item name="android:icon">@android:color/transparent</item>  
+    </style>
+</resources>
